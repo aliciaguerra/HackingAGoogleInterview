@@ -87,3 +87,42 @@ if a thread needs to acquire locks 1, 5, and 2, it must acquire lock1, followed 
 we prevent one thread trying to acquire lock 1 then lock 2 an another thread trying to acquire lock2then lock1, which could
 cause deadlock.
 
+#What is polymorphism?
+Polymorphism is the ability of one method to have different behavior depending on one type of object it is being called on
+or the type of object being passed as a parameter. For example, if we defined out own MyInteger class and wanted to define an add method for it, we would want the following code to work:
+ 
+                      MyInteger int1 = new MyInteger(5);
+                      MyInteger int2 = new MyInteger(7);
+                      MyFloat float1 = new MyFloat(3.14);
+                      MyDouble doub1 = new MyDouble(2.71);
+                      print(int1.add(int2));
+                      print(int1.add(float2));
+                      print(int1.add(doub1));
+                      
+#What is a virtual function/method?
+A method's being virtual simply desrcibes it behavior when working with superclasses and subclasses. Assume class B is
+a subclass of class A. Also assume both classes A and B have a method "bar". 
+
+                     A *foo = new B();
+                     foo -> bar()
+                     
+If the method bar() is declared to be virtual, then the code will run the method found in class A when we call foo-> bar(),
+the method found in class B will be run. This is how Java always handles methods and it's usually what we want to happen.
+However, if the method bar() is not declared to be virtual, then this code will run the method found in class A when we call
+foo->bar.
+
+#Classic Question #3: A to I
+Write a function to convert a string to an integer this function is called A to I (or atoi()) because we are converting an ASCII string to an integer.
+
+Good answer: Go through the string from beginning to end. If the first character is a negative sign, rmemeber this fact.
+Keep a running total, which starts at 0. Each time you reach a new digit, multiply the total by 10 and add the new digit.
+When you reach the end, return the current total, or, if there was a negative sign, the inverse of the number.
+
+Okay answer:  Another approach is to go through the string from end to beginning, again keeping a running total. Also, remember a number x representing which digit you are currently on; x is initially 1. For each character, add the current digit times x  to the running total, and multiply x by 10. When you reach the beginning, return the current total, or, if there was a negative sign, the inverse of the number.
+
+Note: The interviewer is likely to ask you about the limitations of your approach.  
+You should mention that it only works if the string consists of an optional negative 
+sign followed by digits.  Also, mention that if the number is too big, the result will be 
+incorrect due to overflow.
+
+
